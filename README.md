@@ -1,4 +1,4 @@
-# Đề tài: Trang Web Giới Thiệu
+# Đề tài: Trang Web Giới Thiệu A2.2 Vy Duc Hieu
 
 ## 1. Giới thiệu dự án
 - Trang web này được xây dựng để hoàn thành bài tập môn Thiết kế Web.
