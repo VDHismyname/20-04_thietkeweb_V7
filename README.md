@@ -1,4 +1,4 @@
-# Đề tài: Trang Web Giới Thiệu V7 Vy Duc Hieu
+# Đề tài: Trang Web Giới Thiệu V7
 
 ## 1. Giới thiệu dự án
 - Trang web này được xây dựng để hoàn thành bài tập môn Thiết kế Web.
