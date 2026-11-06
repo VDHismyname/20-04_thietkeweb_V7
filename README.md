@@ -9,4 +9,4 @@
 - Công cụ: Visual Studio Code, Git/GitHub.
 
 ## 3. Hướng dẫn xem trang web
-- Xem trực tiếp qua GitHub Pages tại đây: [Điền đường link GitHub Pages của bạn vào đây]
+- Xem trực tiếp qua GitHub Pages tại đây: [[https://github.com/VDHismyname/20-04_thietkeweb_V7/settings/pages]]
