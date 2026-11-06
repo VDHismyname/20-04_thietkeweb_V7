@@ -7,11 +7,12 @@
 ## 2. Hướng dẫn xem trang web
 - Mở trang web thông qua URL đây [[https://vdhismyname.github.io/20-04_thietkeweb_V7/]]
 - Bấm vào các dự án 
-# Đề tài: Trang Web Giới Thiệu V7
 
 ## 3. Hạn chế
 - Chưa thay đổi 3 thẻ dự án
 - Dự án còn nhiều hạn chế, vì đây là bản demo
+
+# Đề tài: Trang Web Giới Thiệu V7
 
 ## 1. Giới thiệu dự án
 - Trang web này được xây dựng để hoàn thành bài tập môn Thiết kế Web.
