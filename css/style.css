@@ -1,16 +1,52 @@
 /* =========================================================
-   Portfolio CV – bản V3 (thiết kế cho màn hình laptop)
-   FIT4014 – Lab 4: bạn sẽ chuyển tệp này thành bản V4 responsive.
+   Portfolio CV – bản V4 (responsive: điện thoại, máy tính bảng, laptop)
+   Cách tiếp cận: mobile-first.
+   - Mặc định (không media query) = điện thoại
+   - min-width: 600px  = điện thoại lớn / tablet nhỏ
+   - min-width: 900px  = tablet ngang / laptop nhỏ
+   - min-width: 1200px = màn hình lớn
+   Bảng màu giữ nguyên bản V3.
    ========================================================= */
 
+/* ---------- 0. Biến màu & cỡ chữ ---------- */
+:root {
+  --blue: #12457a;
+  --amber: #e8a33d;
+  --ink: #1d2733;
+  --muted: #4a5a6a;
+  --bg: #f4f6f8;
+  --bg-alt: #e6edf3;
+  --line: #c9d4de;
+  --white: #ffffff;
+
+  --space-section: 48px;
+  --radius: 8px;
+  --shadow: 0 2px 6px rgba(18, 69, 122, 0.08), 0 8px 24px rgba(18, 69, 122, 0.08);
+}
+
 /* ---------- 1. Thiết lập chung ---------- */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px; /* chừa chỗ cho header dính khi bấm menu */
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   margin: 0;
   font-family: "Be Vietnam Pro", "Segoe UI", Arial, sans-serif;
-  font-size: 17px;
+  font-size: 16px;
   line-height: 1.6;
-  color: #1d2733;
-  background: #f4f6f8;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 h1, h2, h3 {
@@ -19,182 +55,395 @@ h1, h2, h3 {
 }
 
 h2 {
-  font-size: 30px;
-  color: #12457a;
+  font-size: clamp(24px, 4vw, 30px);
+  color: var(--blue);
+}
+
+/* thanh nhấn nhỏ dưới tiêu đề mỗi phần */
+h2::after {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 4px;
+  margin-top: 8px;
+  background: var(--amber);
+  border-radius: 2px;
 }
 
 a {
-  color: #12457a;
+  color: var(--blue);
 }
 
-a:focus {
-  outline: none;
+/* Giữ viền focus cho người dùng bàn phím (bản V3 đã tắt, không tốt cho khả năng truy cập) */
+a:focus-visible {
+  outline: 3px solid var(--amber);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
+/* Khung nội dung co giãn: tối đa 1100px, luôn có lề hai bên */
 .container {
-  width: 1100px;
+  width: 100%;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 20px;
 }
 
 .section {
-  padding: 64px 0;
+  padding: var(--space-section) 0;
 }
 
 .section-alt {
-  background: #e6edf3;
+  background: var(--bg-alt);
 }
 
 /* ---------- 2. Đầu trang và menu ---------- */
 .site-header {
-  background: #12457a;
-  padding: 16px 0;
+  background: var(--blue);
+  padding: 12px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
 }
 
+/* Điện thoại: logo ở trên, menu xuống dòng bên dưới */
 .site-header .container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
+  gap: 8px;
 }
 
 .logo {
-  color: #ffffff;
-  font-size: 22px;
+  color: var(--white);
+  font-size: 20px;
   font-weight: 700;
   text-decoration: none;
 }
 
 .menu {
   display: flex;
-  gap: 32px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px 18px;
   list-style: none;
   margin: 0;
   padding: 0;
-  white-space: nowrap;
 }
 
 .menu a {
-  color: #ffffff;
+  display: inline-block;
+  padding: 4px 2px; /* vùng bấm lớn hơn cho ngón tay */
+  color: var(--white);
   text-decoration: none;
   font-weight: 600;
+  font-size: 15px;
+  border-bottom: 2px solid transparent;
 }
 
 .menu a:hover {
-  text-decoration: underline;
+  border-bottom-color: var(--amber);
+}
+
+.site-header a:focus-visible {
+  outline-color: var(--white);
 }
 
 /* ---------- 3. Phần giới thiệu ---------- */
 .hero {
-  background: #ffffff;
-  padding: 72px 0;
+  background: var(--white);
+  padding: 40px 0;
 }
 
+/* Điện thoại: ảnh nằm trên, chữ nằm dưới, căn giữa */
 .hero-inner {
   display: flex;
+  flex-direction: column-reverse;
   align-items: center;
-  gap: 64px;
+  text-align: center;
+  gap: 28px;
 }
 
 .hero-text {
-  width: 640px;
+  width: 100%;
 }
 
 .hero-role {
-  color: #4a5a6a;
+  color: var(--muted);
   font-weight: 600;
   margin: 0 0 8px;
 }
 
 .hero h1 {
-  font-size: 56px;
-  color: #12457a;
+  font-size: clamp(34px, 9vw, 56px);
+  color: var(--blue);
 }
 
 .button {
   display: inline-block;
   margin-top: 8px;
   padding: 12px 28px;
-  background: #e8a33d;
-  color: #1d2733;
+  background: var(--amber);
+  color: var(--ink);
   font-weight: 700;
   text-decoration: none;
   border-radius: 6px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(232, 163, 61, 0.45);
 }
 
 .avatar {
-  width: 320px;
-  height: 320px;
+  width: clamp(180px, 55vw, 280px);
+  height: clamp(180px, 55vw, 280px);
+  object-fit: cover; /* ảnh không bị méo khi co giãn */
   border-radius: 50%;
+  border: 6px solid var(--white);
+  box-shadow: 0 0 0 4px var(--amber), var(--shadow);
 }
 
 /* ---------- 4. Kỹ năng ---------- */
 .skills {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px 32px;
+  grid-template-columns: 1fr;
+  gap: 10px 32px;
   padding-left: 20px;
 }
 
 /* ---------- 5. Dự án ---------- */
 .projects {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  grid-template-columns: 1fr;
+  gap: 20px;
 }
 
 .card {
-  background: #ffffff;
+  background: var(--white);
   padding: 20px;
-  border-radius: 8px;
-  border-top: 4px solid #e8a33d;
+  border-radius: var(--radius);
+  border-top: 4px solid var(--amber);
+  box-shadow: var(--shadow);
+  overflow-wrap: anywhere; /* link GitHub dài không làm vỡ thẻ */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 10px rgba(18, 69, 122, 0.12), 0 14px 30px rgba(18, 69, 122, 0.14);
 }
 
 .card img {
-  width: 300px;
-  height: 180px;
+  width: 100%;          /* thay cho 300px cố định */
+  height: auto;
+  aspect-ratio: 5 / 3;  /* giữ tỉ lệ 300×180 như V3 */
+  object-fit: cover;
   display: block;
   margin-bottom: 16px;
+  border-radius: 4px;
 }
 
 .card h3 {
-  font-size: 20px;
+  font-size: 19px;
 }
 
 /* ---------- 6. Học tập ---------- */
+/* Điện thoại: bảng cuộn ngang trong khung, trang không bị tràn */
 .study {
+  display: block;
   width: 100%;
+  overflow-x: auto;
   border-collapse: collapse;
-  background: #ffffff;
+  background: var(--white);
+  -webkit-overflow-scrolling: touch;
 }
 
 .study th,
 .study td {
-  padding: 12px 16px;
-  border: 1px solid #c9d4de;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
   text-align: left;
+  min-width: 140px;
 }
 
 .study th {
-  background: #12457a;
-  color: #ffffff;
+  background: var(--blue);
+  color: var(--white);
 }
 
 /* ---------- 7. Liên hệ và chân trang ---------- */
 .contact {
   display: flex;
-  gap: 48px;
+  flex-direction: column;
+  gap: 12px;
   list-style: none;
   padding: 0;
+  margin: 0;
+  overflow-wrap: anywhere; /* email dài không tràn màn hình */
 }
 
 .site-footer {
-  background: #1d2733;
-  color: #c9d4de;
+  background: var(--ink);
+  color: var(--line);
   padding: 24px 0;
-  font-size: 15px;
+  font-size: 14px;
+  text-align: center;
 }
-/* Bố cục mặc định dành cho máy tính (Desktop) */
-.container {
-  width: 1200px;
-  margin: 0 auto;
+
+.site-footer p {
+  margin: 0;
+}
+
+/* =========================================================
+   TABLET NHỎ / ĐIỆN THOẠI LỚN  (từ 600px)
+   ========================================================= */
+@media (min-width: 600px) {
+  :root {
+    --space-section: 56px;
+  }
+
+  .container {
+    padding: 0 24px;
+  }
+
+  .skills {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .projects {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  /* thẻ cuối nằm lẻ thì trải hết hàng cho cân đối */
+  .projects .card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+
+  .contact {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px 40px;
+  }
+
+  .study {
+    display: table;
+    overflow-x: visible;
+  }
+}
+
+/* =========================================================
+   TABLET NGANG / LAPTOP NHỎ  (từ 900px)
+   Quay về bố cục V3: header một hàng, hero hai cột, 3 cột
+   ========================================================= */
+@media (min-width: 900px) {
+  :root {
+    --space-section: 64px;
+  }
+
+  body {
+    font-size: 17px;
+  }
+
+  .site-header {
+    padding: 16px 0;
+  }
+
+  .site-header .container {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .logo {
+    font-size: 22px;
+  }
+
+  .menu {
+    flex-wrap: nowrap;
+    gap: 32px;
+    white-space: nowrap;
+  }
+
+  .menu a {
+    font-size: 17px;
+  }
+
+  .hero {
+    padding: 72px 0;
+  }
+
+  .hero-inner {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+    gap: 64px;
+  }
+
+  .hero-text {
+    flex: 1;
+    max-width: 640px;
+  }
+
+  .avatar {
+    flex-shrink: 0;
+    width: 320px;
+    height: 320px;
+  }
+
+  .skills {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .projects {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .projects .card:last-child:nth-child(odd) {
+    grid-column: auto;
+  }
+
+  .card h3 {
+    font-size: 20px;
+  }
+
+  .contact {
+    gap: 48px;
+  }
+
+  .site-footer {
+    font-size: 15px;
+    text-align: left;
+  }
+}
+
+/* =========================================================
+   MÀN HÌNH LỚN  (từ 1200px) – cho nội dung thoáng hơn một chút
+   ========================================================= */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1200px;
+  }
+}
+
+/* =========================================================
+   Tôn trọng người dùng tắt hiệu ứng chuyển động
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .card,
+  .button {
+    transition: none;
+  }
+
+  .card:hover,
+  .button:hover {
+    transform: none;
+  }
 }
